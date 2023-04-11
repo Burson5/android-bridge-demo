@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>DEMO</title>
+
+
+  <script>
+    window.tooltips = () => {
+      console.log('点击测试');
+      JSInterface.toast('点击测试')
+    };
+  </script>
+</head>
+
+
+<body style="margin: 0; background-color: #fff">
+  <div style="text-align: center; margin-top: 20vh;">
+    <h1>HELLO WORLD！</h1>
+    <div style="margin-top: 100px;">
+      <button onclick="tooltips()">点击测试</button>
+    </div>
+  </div>
+</body>
+
+</html>

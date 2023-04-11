@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+def libs = rootProject.ext.dependencies
+def cfg = rootProject.ext.android
+
+
+android {
+    signingConfigs {
+    }
+    compileSdkVersion cfg.compileSdkVersion
+    buildToolsVersion cfg.buildToolsVersion
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled false   //是否代码混淆
+            multiDexEnabled true
+            debuggable true
+        }
+    }
+    defaultConfig {
+        applicationId cfg.applicationId
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionName cfg.versionName
+        versionCode 1
+        ndk {
+            abiFilters "armeabi",'x86', 'armeabi-v7a', 'armeabi-v8a', 'arm64-v8a'
+        }
+        packagingOptions {
+            exclude 'META-INF/rxjava.properties'
+        }
+    }
+    sourceSets {
+        main { jniLibs.srcDirs = ['libs'] }
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    flavorDimensions 'version'
+    productFlavors {
+        demo {
+            dimension 'version'
+            applicationId cfg.applicationId
+            versionNameSuffix '_demo'
+            versionName cfg.versionName
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                //这里修改apk文件名
+                outputFileName = "${variant.versionName}.apk"
+            }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:$libs.appcompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$libs.constraintlayoutVersion"
+
+    implementation 'cn.pedant.safewebviewbridge:library:1.4'
+}

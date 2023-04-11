@@ -1,0 +1,16 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.StartingWindowTheme" parent="AppTheme">
+        <!-- 可以设置成纯颜色（设置一个和Activity UI相似的背景） -->
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="windowNoTitle">true</item>
+        <!--也可以设置成一张图片 -->
+        <!-- <item name="android:windowBackground">@drawable/startingwindow_bg</item>-->
+    </style>
+</resources>

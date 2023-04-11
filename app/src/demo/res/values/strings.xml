@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Bridge Demo</string>
+    <string name="dialog_title_system_msg">系统消息</string>
+</resources>

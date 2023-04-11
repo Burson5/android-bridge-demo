@@ -1,0 +1,42 @@
+ext {
+    configProAssetsFile = file("./app/src/demo/assets/config.properties")
+    versionProp = getProperties(configProAssetsFile)
+
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "29.0.3",
+            applicationId    : "com.bridge.demo",
+            minSdkVersion    : 23,
+            targetSdkVersion : 29,
+            versionCode      : getVersionCode(),
+            versionName      : getVersionName(),
+    ]
+
+
+    dependencies = [
+            appcompatVersion            : "1.1.0",
+            constraintlayoutVersion     : "1.1.3",
+            runnerVersion               : "1.1.1",
+    ]
+
+}
+
+static Properties getProperties(File versionPropFile) {
+    if (versionPropFile.canRead()) {
+        Properties version = new Properties()
+        version.load(new FileInputStream(versionPropFile))
+
+        version
+    } else {
+        throw new GradleException("Could not find version.properties!")
+    }
+}
+
+
+String getVersionCode() {
+    "V" + "${versionProp['VERSION'].toString()}"
+}
+String getVersionName() {
+    "Bridge_Demo" + "V" + "${versionProp['VERSION'].toString()}"
+}
+
